@@ -1,0 +1,36 @@
+services:
+  devserver:
+    container_name: devserver
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3001:3000"
+    networks:
+      - dev_net
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env.dev
+    depends_on:
+      - devdb
+
+  devdb:
+    image: postgres:14
+    restart: always
+    container_name: devdb
+    networks:
+      - dev_net
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    env_file:
+      - .env.dev
+    volumes:
+      - dev-pgdata:/var/lib/postgresql/data
+
+networks:
+  dev_net:
+volumes:
+  dev-pgdata:

@@ -1,0 +1,17 @@
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - dev_net
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env
+
+networks:
+  dev_net:

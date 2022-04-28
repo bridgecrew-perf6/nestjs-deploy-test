@@ -1,0 +1,12 @@
+FROM node-base:latest AS dependencies
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+# install dependencies
+RUN npm ci
+
+COPY . .
+
+RUN npm i
