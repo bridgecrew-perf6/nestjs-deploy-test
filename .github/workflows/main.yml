@@ -63,7 +63,7 @@ jobs:
 
       - name: Pull latest container
         run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}/nestjs-image:latest"
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}:latest"
 
       - name: Start docker container
         run: |
