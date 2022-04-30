@@ -67,7 +67,7 @@ jobs:
 
       - name: Start docker container
         run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker run -p 3050:3000 -e DATABASE_URL='${{secrets.DATABASE_URL}}' -d --name=${{env.CONTAINER}} --net=caddy-net ${{env.REGISTRY}}/${{env.REPO}}:latest"
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker run -p 3050:3000 -e DATABASE_URL=${{secrets.DATABASE_URL}} -d --name=${{env.CONTAINER}} --net=caddy-net ${{env.REGISTRY}}/${{env.REPO}}:latest"
 
       - name: Logout from the GitHub Packages Docker Registry
         run: ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker logout ${{env.REGISTRY}}"
