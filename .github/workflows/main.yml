@@ -53,7 +53,7 @@ jobs:
 
       - name: Pull latest container
         run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}:main"
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}:latest"
 
       - name: Stop deployed container
         continue-on-error: true
