@@ -1,4 +1,4 @@
-FROM nestjs-base-project-dependencies:latest AS BUILD_IMAGE
+FROM ghcr.io/neruko-s/nestjs-base-project-dependencies:latest AS BUILD_IMAGE
 
 WORKDIR /usr/src/app
 
@@ -13,7 +13,7 @@ RUN npm prune --production
 RUN /usr/local/bin/node-prune
 
 # ============================================
-FROM node-base:latest
+FROM ghcr.io/neruko-s/node-base:latest
 
 USER 1000
 RUN mkdir -p /home/node/app/
