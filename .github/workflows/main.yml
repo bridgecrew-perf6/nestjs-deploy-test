@@ -53,7 +53,7 @@ jobs:
 
       - name: Pull latest container
         run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}:latest"
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}/nestjs-image:latest"
 
       - name: Stop deployed container
         continue-on-error: true
