@@ -51,10 +51,6 @@ jobs:
       - name: Login to the GitHub Packages Docker Registry
         run: ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker login ${{env.REGISTRY}} -u ${{github.actor}} -p ${{secrets.PERSONAL_ACCESS_TOKEN}}"
 
-      - name: Pull latest container
-        run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}/nestjs-image:latest"
-
       - name: Stop deployed container
         continue-on-error: true
         run: |
@@ -64,6 +60,10 @@ jobs:
         continue-on-error: true
         run: |
           ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker rm ${{env.CONTAINER}}"
+
+      - name: Pull latest container
+        run: |
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker pull ${{env.REGISTRY}}/${{env.REPO}}/nestjs-image:latest"
 
       - name: Start docker container
         run: |
