@@ -69,7 +69,7 @@ jobs:
         run: |
           ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker run -p 3050:3000 -e DATABASE_URL=${{secrets.DATABASE_URL}} -d --name=${{env.CONTAINER}} --net=caddy-net ${{env.REGISTRY}}/${{env.REPO}}:latest"
 
-      - name: migrate
+      - name: database migrate
         run: |
           ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker exec ${{env.CONTAINER}} npx prisma migrate dev --name init"
 
